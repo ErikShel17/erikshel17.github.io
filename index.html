@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Not Available</title>
+    <style>
+        /* =========================================
+           1. EASY EDIT VARIABLES (CHANGE THESE)
+           ========================================= */
+        :root {
+            /* Main Colors */
+            --bg-color: #050505;
+            --card-bg: #0a0a0a;
+            
+            /* Neon Colors */
+            --neon-primary: #00f3ff;   /* Cyan */
+            --neon-secondary: #bc13fe; /* Purple/Pink */
+            --text-color: #e0e0e0;
+            
+            /* Fonts */
+            --font-main: 'Courier New', Courier, monospace; /* Tech/Code look */
+        }
+
+        /* =========================================
+           2. GLOBAL STYLES & RESET
+           ========================================= */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Background Grid Effect */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Scanline Overlay (CRT Monitor Effect) */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0,0,0,0.2) 50%,
+                rgba(0,0,0,0.2)
+            );
+            background-size: 100% 4px;
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* =========================================
+           3. CARD CONTAINER
+           ========================================= */
+        .card {
+            position: relative;
+            background: var(--card-bg);
+            width: 90%;
+            max-width: 450px;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            box-shadow: 
+                0 0 10px rgba(0, 243, 255, 0.1),
+                0 0 40px rgba(0, 243, 255, 0.05);
+            z-index: 5; /* Above the background grid */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hover effect on the card */
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 0 20px rgba(0, 243, 255, 0.2),
+                0 0 60px rgba(0, 243, 255, 0.1);
+            border-color: var(--neon-primary);
+        }
+
+        /* =========================================
+           4. TYPOGRAPHY & EFFECTS
+           ========================================= */
+        
+        /* The 404 Number */
+        .error-code {
+            font-size: 5rem;
+            font-weight: bold;
+            color: var(--neon-primary);
+            text-shadow: 
+                0 0 5px var(--neon-primary),
+                0 0 10px var(--neon-primary),
+                0 0 20px var(--neon-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 5px;
+            animation: flicker 3s infinite alternate;
+        }
+
+        /* The Main Message */
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid var(--neon-secondary);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* The Subtext / Description */
+        p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #aaa;
+        }
+
+        /* =========================================
+           5. SOCIAL LINKS (VISIT CARD PART)
+           ========================================= */
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .link-btn {
+            text-decoration: none;
+            color: var(--text-color);
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--neon-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--neon-secondary);
+            transition: fill 0.3s ease;
+        }
+
+        /* Hover states for links */
+        .link-btn:hover {
+            background-color: var(--neon-secondary);
+            box-shadow: 0 0 20px var(--neon-secondary);
+            transform: scale(1.1);
+        }
+
+        .link-btn:hover svg {
+            fill: #fff;
+        }
+
+        /* =========================================
+           6. ANIMATIONS
+           ========================================= */
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+                text-shadow: 
+                    0 0 5px var(--neon-primary),
+                    0 0 10px var(--neon-primary);
+            }
+            20%, 24%, 55% {
+                opacity: 0.5;
+                text-shadow: none;
+            }
+        }
+
+        /* =========================================
+           7. RESPONSIVE
+           ========================================= */
+        @media (max-width: 480px) {
+            .error-code {
+                font-size: 4rem;
+            }
+            .card {
+                width: 95%;
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CRT Scanline Overlay -->
+    <div class="scanlines"></div>
+
+    <!-- Main Card Container -->
+    <main class="card">
+        
+        <!-- The 404 Big Text -->
+        <div class="error-code">404</div>
+        
+        <!-- The Main Title -->
+        <h2>System Offline</h2>
+        
+        <!-- The Description Message -->
+        <p>
+            Nothing is available for me right now.<br>
+            This sector is currently under construction or does not exist.
+        </p>
+
+        <!-- Contact / Social Links (Visit Card Section) -->
+        <div class="links">
+            <!-- Email Icon -->
+            <a href="mailto:your@email.com" class="link-btn" aria-label="Email">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+            </a>
+            
+            <!-- Twitter/X Icon -->
+            <a href="#" class="link-btn" aria-label="Twitter">
+                <svg viewBox="0 0 24 24">
+                    <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                </svg>
+            </a>
+
+            <!-- GitHub Icon -->
+            <a href="#" class="link-btn" aria-label="GitHub">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+            </a>
+        </div>
+    </main>
+
+</body>
+</html>
